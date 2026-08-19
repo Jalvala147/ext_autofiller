@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PersonaFake</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <strong>PersonaFake</strong>
+          <p>Identidades de prueba</p>
+        </div>
+      </div>
+      <button class="gear" id="openOptions" type="button" title="Personalizar datos">Ajustes</button>
+    </header>
+
+    <section class="controls">
+      <label>
+        Género
+        <select id="gender">
+          <option value="random">Aleatorio</option>
+          <option value="male">Hombre</option>
+          <option value="female">Mujer</option>
+        </select>
+      </label>
+      <label>
+        País
+        <select id="locale">
+          <option value="mx">México</option>
+          <option value="es">España</option>
+          <option value="ar">Argentina</option>
+          <option value="co">Colombia</option>
+          <option value="us">Estados Unidos</option>
+        </select>
+      </label>
+    </section>
+
+    <article class="card" id="card">
+      <div class="card-top">
+        <span class="badge" id="genderBadge">—</span>
+        <span class="locale-pill" id="localePill">MX</span>
+      </div>
+      <h1 id="fullName">Generando…</h1>
+      <dl>
+        <div><dt>Usuario</dt><dd id="username" data-copy></dd></div>
+        <div><dt>Email</dt><dd id="email" data-copy></dd></div>
+        <div><dt>Password</dt><dd id="password" data-copy></dd></div>
+        <div><dt>Teléfono</dt><dd id="phone" data-copy></dd></div>
+        <div><dt>Dirección</dt><dd id="address" data-copy></dd></div>
+        <div><dt>CP</dt><dd id="postalCode" data-copy></dd></div>
+        <div><dt>ID</dt><dd id="documentId" data-copy></dd></div>
+      </dl>
+    </article>
+
+    <p class="hint" id="status">Clic en un dato para copiarlo.</p>
+
+    <div class="actions">
+      <button id="fill" class="primary" type="button">Rellenar formulario</button>
+      <button id="generate" type="button">Nueva identidad</button>
+    </div>
+    <div class="actions secondary-row">
+      <button id="saveProfile" type="button">Guardar perfil</button>
+      <button id="copyJson" type="button">Copiar JSON</button>
+    </div>
+
+    <script src="lib/defaults.js"></script>
+    <script src="lib/generator.js"></script>
+    <script src="lib/storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

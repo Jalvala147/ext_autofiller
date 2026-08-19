@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PersonaFake — Ajustes</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="kicker">PersonaFake</p>
+        <h1>Personaliza las identidades de prueba</h1>
+      </div>
+      <button id="save" class="primary" type="button">Guardar cambios</button>
+    </header>
+
+    <p class="flash" id="flash" hidden></p>
+
+    <nav class="tabs">
+      <button type="button" class="active" data-tab="prefs">Preferencias</button>
+      <button type="button" data-tab="lists">Nombres y listas</button>
+      <button type="button" data-tab="custom">Campos extra</button>
+      <button type="button" data-tab="profiles">Perfiles guardados</button>
+    </nav>
+
+    <section id="prefs" class="panel active">
+      <article>
+        <h2>Generación</h2>
+        <div class="grid">
+          <label>
+            Género por defecto
+            <select id="gender">
+              <option value="random">Aleatorio</option>
+              <option value="male">Hombre</option>
+              <option value="female">Mujer</option>
+            </select>
+          </label>
+          <label>
+            País / formato
+            <select id="locale">
+              <option value="mx">México</option>
+              <option value="es">España</option>
+              <option value="ar">Argentina</option>
+              <option value="co">Colombia</option>
+              <option value="us">Estados Unidos</option>
+            </select>
+          </label>
+          <label class="check">
+            <input id="overwrite" type="checkbox" />
+            Sobrescribir campos que ya tienen texto
+          </label>
+        </div>
+      </article>
+
+      <article>
+        <h2>Password de prueba</h2>
+        <div class="grid">
+          <label>
+            Modo
+            <select id="passwordMode">
+              <option value="fixed">Fija (recomendada para QA)</option>
+              <option value="random">Aleatoria en cada identidad</option>
+            </select>
+          </label>
+          <label>
+            Password fija
+            <input id="fixedPassword" type="text" />
+          </label>
+          <label>
+            Longitud aleatoria
+            <input id="passwordLength" type="number" min="8" max="32" />
+          </label>
+        </div>
+      </article>
+
+      <article>
+        <h2>Usuario y email</h2>
+        <div class="grid">
+          <label>
+            Formato de usuario
+            <select id="usernameFormat">
+              <option value="name.surname">nombre.apellido99</option>
+              <option value="namesurname">nombreapellido99</option>
+              <option value="initial.surname">n.apellido99</option>
+              <option value="surname.name">apellido.nombre99</option>
+            </select>
+          </label>
+          <label>
+            Formato de email
+            <select id="emailFormat">
+              <option value="name.surname">nombre.apellido99@dominio</option>
+              <option value="namesurname">nombreapellido99@dominio</option>
+              <option value="initial.surname">n.apellido99@dominio</option>
+              <option value="surname.name">apellido.nombre99@dominio</option>
+            </select>
+          </label>
+          <label class="wide">
+            Dominios de email (uno por línea)
+            <textarea id="domains" rows="5"></textarea>
+          </label>
+        </div>
+      </article>
+
+      <article>
+        <h2>Datos fijos opcionales</h2>
+        <p class="help">Si los dejas vacíos, se generan solos.</p>
+        <div class="grid">
+          <label>
+            Empresa
+            <input id="company" type="text" placeholder="Norte Labs" />
+          </label>
+          <label>
+            Puesto
+            <input id="jobTitle" type="text" placeholder="QA Analyst" />
+          </label>
+          <label>
+            Sitio web
+            <input id="website" type="text" placeholder="https://www.nortelabs.test" />
+          </label>
+        </div>
+      </article>
+    </section>
+
+    <section id="lists" class="panel">
+      <article>
+        <h2>Listas personalizadas</h2>
+        <p class="help">Una entrada por línea. Si una lista queda vacía, se usan los valores por defecto.</p>
+        <div class="grid lists">
+          <label>
+            Nombres de hombre
+            <textarea id="maleNames" rows="12"></textarea>
+          </label>
+          <label>
+            Nombres de mujer
+            <textarea id="femaleNames" rows="12"></textarea>
+          </label>
+          <label>
+            Apellidos
+            <textarea id="lastNames" rows="12"></textarea>
+          </label>
+          <label>
+            Calles
+            <textarea id="streets" rows="12"></textarea>
+          </label>
+        </div>
+        <button id="resetLists" type="button">Restablecer listas por defecto</button>
+      </article>
+    </section>
+
+    <section id="custom" class="panel">
+      <article>
+        <h2>Campos extra</h2>
+        <p class="help">
+          Si un input del formulario coincide con la clave (name, id o etiqueta), se rellena con ese valor.
+          En valores aleatorios puedes usar <code>{4d}</code> para 4 dígitos, <code>{8d}</code>, etc.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Clave / coincidencia</th>
+              <th>Modo</th>
+              <th>Valor</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="customRows"></tbody>
+        </table>
+        <button id="addCustom" type="button">Añadir campo</button>
+      </article>
+    </section>
+
+    <section id="profiles" class="panel">
+      <article>
+        <h2>Perfiles guardados</h2>
+        <p class="help">Guarda identidades desde el popup para reutilizarlas en pruebas concretas.</p>
+        <ul id="profileList" class="profiles"></ul>
+      </article>
+      <article>
+        <h2>Probar</h2>
+        <p class="help">Abre un formulario de registro de ejemplo para verificar el relleno.</p>
+        <button id="openDemo" type="button">Abrir formulario de prueba</button>
+      </article>
+    </section>
+
+    <script src="lib/defaults.js"></script>
+    <script src="lib/generator.js"></script>
+    <script src="lib/storage.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

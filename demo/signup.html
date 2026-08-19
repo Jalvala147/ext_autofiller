@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PersonaFake — Formulario de prueba</title>
+    <style>
+      :root { --bg:#12110f; --ink:#f3ece1; --muted:#b7aa98; --line:#3a342c; --accent:#e2b15c; }
+      body { margin:0 auto; max-width:640px; padding:32px 16px; background:var(--bg); color:var(--ink); font:15px/1.45 "Segoe UI", sans-serif; }
+      h1 { margin:0 0 8px; }
+      p { color:var(--muted); }
+      form { display:grid; gap:10px; margin-top:18px; }
+      label { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+      input, select { font:inherit; padding:8px 10px; border-radius:8px; border:1px solid var(--line); background:#1c1915; color:var(--ink); text-transform:none; }
+      .row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      button { margin-top:8px; background:var(--accent); border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:650; }
+    </style>
+  </head>
+  <body>
+    <h1>Registro de prueba</h1>
+    <p>Pulsa el botón de abajo para rellenar este registro con una identidad fake. En sitios reales usa el popup de la extensión o clic derecho.</p>
+    <form>
+      <div class="row">
+        <label>Nombre <input name="firstName" autocomplete="given-name" /></label>
+        <label>Apellido paterno <input name="lastName" autocomplete="family-name" /></label>
+      </div>
+      <label>Apellido materno <input name="secondLastName" autocomplete="additional-name" /></label>
+      <label>Nombre de usuario <input name="username" autocomplete="username" /></label>
+      <label>Email <input type="email" name="email" autocomplete="email" /></label>
+      <div class="row">
+        <label>Password <input type="password" name="password" autocomplete="new-password" /></label>
+        <label>Confirmar password <input type="password" name="passwordConfirm" autocomplete="new-password" /></label>
+      </div>
+      <label>Teléfono <input type="tel" name="phone" autocomplete="tel" /></label>
+      <label>Fecha de nacimiento <input type="date" name="birthDate" autocomplete="bday" /></label>
+      <label>Género
+        <select name="gender" autocomplete="sex">
+          <option value="">Selecciona</option>
+          <option value="male">Hombre</option>
+          <option value="female">Mujer</option>
+        </select>
+      </label>
+      <label>Dirección <input name="address" autocomplete="street-address" /></label>
+      <div class="row">
+        <label>Ciudad <input name="city" autocomplete="address-level2" /></label>
+        <label>Estado <input name="state" autocomplete="address-level1" /></label>
+      </div>
+      <div class="row">
+        <label>Código postal <input name="postalCode" autocomplete="postal-code" /></label>
+        <label>País <input name="country" autocomplete="country-name" /></label>
+      </div>
+      <label>CURP / ID <input name="documentId" /></label>
+      <label>Empresa <input name="company" autocomplete="organization" /></label>
+      <button type="button" id="fillLocal">Rellenar con identidad local</button>
+    </form>
+    <script src="../lib/defaults.js"></script>
+    <script src="../lib/generator.js"></script>
+    <script src="../lib/fill.js"></script>
+    <script>
+      document.getElementById("fillLocal").addEventListener("click", () => {
+        const identity = PersonaFake.generate(PF_DEFAULTS);
+        PFFill.fillForm(identity, { overwrite: true });
+      });
+    </script>
+  </body>
+</html>

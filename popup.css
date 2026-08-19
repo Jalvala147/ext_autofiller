@@ -1,0 +1,255 @@
+:root {
+  --bg: #12110f;
+  --ink: #f3ece1;
+  --muted: #b7aa98;
+  --line: #3a342c;
+  --card: #1c1915;
+  --accent: #e2b15c;
+  --accent-ink: #1a1408;
+  --male: #7eb8c9;
+  --female: #e7a3b4;
+  --ok: #b7d39a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 360px;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 200px at 0 -40px, #2a2318 0%, transparent 60%),
+    var(--bg);
+  font: 13px/1.4 "Segoe UI", "Trebuchet MS", sans-serif;
+}
+
+.top,
+.controls,
+.actions,
+.card,
+.hint {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.brand strong {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.mark {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--accent);
+  border-radius: 4px 10px 4px 10px;
+  background:
+    linear-gradient(180deg, transparent 12px, var(--accent) 12px, var(--accent) 13px, transparent 13px),
+    linear-gradient(90deg, transparent 8px, #c9844a 8px, #c9844a 9px, transparent 9px);
+  position: relative;
+}
+
+.mark::after {
+  content: "";
+  position: absolute;
+  inset: 6px 7px auto auto;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+}
+
+.gear {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.gear:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+select,
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+select {
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+}
+
+.card {
+  margin: 0 14px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.badge,
+.locale-pill {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 999px;
+}
+
+.badge.male {
+  color: var(--male);
+  border: 1px solid var(--male);
+}
+
+.badge.female {
+  color: var(--female);
+  border: 1px solid var(--female);
+}
+
+.locale-pill {
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+dl {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+dt {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+}
+
+dd {
+  margin: 0;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+dd:hover {
+  color: var(--accent);
+}
+
+.hint {
+  margin: 8px 0;
+  color: var(--muted);
+  font-size: 11px;
+  min-height: 16px;
+}
+
+.hint.ok {
+  color: var(--ok);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.secondary-row {
+  padding-bottom: 14px;
+}
+
+button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 9px 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  font-weight: 650;
+}
+
+button.primary:hover {
+  filter: brightness(1.05);
+}
