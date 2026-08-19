@@ -13,9 +13,19 @@
       "128": "icons/icon128.png"
     }
   },
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "scripts": ["lib/defaults.js", "lib/generator.js", "background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "personafake@jalvala147.github.io",
+      "strict_min_version": "121.0"
+    }
   },
   "icons": {
     "16": "icons/icon16.png",

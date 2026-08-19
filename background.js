@@ -1,4 +1,6 @@
-importScripts("lib/defaults.js", "lib/generator.js");
+if (typeof importScripts === "function") {
+  importScripts("lib/defaults.js", "lib/generator.js");
+}
 
 function createContextMenus() {
   chrome.contextMenus.removeAll(() => {
